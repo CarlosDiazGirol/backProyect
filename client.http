@@ -1,5 +1,5 @@
-POST http://localhost:3000/create
-Content-Type: application/json
+PUT  http://localhost:3000/update/66226bd9d9c03c5a345829d0
+
 {
     "nombre": "jean"
     }

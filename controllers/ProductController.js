@@ -68,6 +68,10 @@ const ProductController = {
         try {
             const id = req.params._id
             const updateProduct = await Product.findByIdAndUpdate(id,req.body,{new:true})
+            if (!updateProduct) {
+                return res.status(404).json({mensaje:'Producto no encontrado'});
+            }
+            res.json(updateProduct)
         } catch (error) {
             console.log(error)
             
