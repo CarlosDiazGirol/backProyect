@@ -38,7 +38,21 @@ const ProductController = {
         } catch (error) {
             console.log(error)
         }
+    },
+
+    async getById(req,res){
+        try {
+            const id = req.params._id
+            const product = await  Product.findById(id)
+            res.json(product)
+        } catch (error) {
+            console.log(error)
+        }
     }
+
+
+
+
 }
 
 module.exports = ProductController
