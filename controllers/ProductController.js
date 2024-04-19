@@ -30,6 +30,7 @@ const ProductController = {
                         <h2>${product.title}</h2>
                         <p>${product.price}</p>
                         <p>${product.category}</p>
+                        <p>${product._id}</p>
                     </div>
                 `)
             }).join('')
@@ -47,6 +48,29 @@ const ProductController = {
             res.json(product)
         } catch (error) {
             console.log(error)
+        }
+    },
+
+    async deleteProduct(req,res){
+        try {
+            const id = req.params._id
+            const deleteProduct = await Product.findByIdAndDelete(id)
+            if(!deleteProduct){
+                return res.status(404).json({mensaje:'product doesnt exist'})
+            }
+            res.json({mensaje:"Product erased",deleteProduct})
+        } catch (error) {
+            console.log(error)
+        }
+    },
+
+    async updateProduct(req,res){
+        try {
+            const id = req.params._id
+            const updateProduct = await Product.findByIdAndUpdate(id,req.body,{new:true})
+        } catch (error) {
+            console.log(error)
+            
         }
     }
 
